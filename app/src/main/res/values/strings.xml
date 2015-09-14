@@ -8,4 +8,9 @@
     <string name="code">code</string>
     <string name="log_in">login</string>
     <string name="publish_message">Publish Message</string>
+    <string name="phone_num_can_not_empty">Phone number can\'t be empty</string>
+    <string name="fail_to_get_code">Fail to get code!</string>
+    <string name="suc_to_get_code">Succeed to get code, please check your short message</string>
+    <string name="connecting">Connecting</string>
+    <string name="connecting_to_server">Connecting to server, please wait.</string>
 </resources>
