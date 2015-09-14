@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="phone">Phone</string>
+    <string name="get_code">Get Code</string>
+    <string name="code">code</string>
+    <string name="log_in">login</string>
 </resources>
