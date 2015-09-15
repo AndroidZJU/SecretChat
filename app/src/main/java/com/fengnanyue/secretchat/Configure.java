@@ -8,7 +8,9 @@ import android.content.SharedPreferences.Editor;
  */
 public class Configure {
     public static final String ACTION_GET_CODE = "send_pass";
-    public static final String SERVER_URL = "http//demo.eoeschool.com/api/v1/nimings/io";
+//    public static final String SERVER_URL = "http//demo.eoeschool.com/api/v1/nimings/io";
+    public static final String SERVER_URL = "http://192.168.0.14:8080/TestServer/api.jsp";
+
     public static final String KEY_TOKEN = "token";
     public static final String KEY_ACTION = "action";
     public static final String KEY_PHONE_NUM = "phone";

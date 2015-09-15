@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -23,7 +24,7 @@ public class NetConnection {
             protected String doInBackground(Void... params) {
 
                 StringBuffer paramsStr = new StringBuffer();
-                for(int i =0;i<kvs.length;i+=2){//kv
+                for(int i =0;i<kvs.length; i+=2){//kv
                     paramsStr.append(kvs[i]).append("=").append(kvs[i+1]).append("&");
                 }
 
@@ -36,6 +37,7 @@ public class NetConnection {
                             uc.setDoOutput(true);
                             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(uc.getOutputStream(), Configure.CHARSET));
                             bw.write(paramsStr.toString());
+                            bw.flush();
                             break;
                         default://GET
                             uc = new URL(url+"?"+paramsStr.toString()).openConnection();
@@ -53,6 +55,8 @@ public class NetConnection {
 
                     System.out.println("Result:"+result);
                     return result.toString();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -72,7 +76,7 @@ public class NetConnection {
                 }
                 super.onPostExecute(s);
             }
-        };
+        }.execute();
 
     }
     public static interface SuccessCallBack{
