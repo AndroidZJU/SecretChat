@@ -38,4 +38,14 @@ public class Configure {
         e.putString(KEY_TOKEN,token);
         e.commit();
     }
+
+    public static String getCachedPhoneNumber(Context context){
+        return context.getSharedPreferences(APP_ID,Context.MODE_PRIVATE).getString(KEY_PHONE_NUM,null);
+    }
+
+    public static void cachePhoneNumber(Context context,String phoneNum){
+        Editor e = context.getSharedPreferences(APP_ID,Context.MODE_PRIVATE).edit();
+        e.putString(KEY_PHONE_NUM,phoneNum);
+        e.commit();
+    }
 }
