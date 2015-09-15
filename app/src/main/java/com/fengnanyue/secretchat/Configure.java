@@ -28,6 +28,8 @@ public class Configure {
     public static final String CHARSET ="utf-8" ;
     public static final String ACTION_LOGON ="login";
     public static final String KEY_CODE ="code";
+    public static final String ACTION_UPLOAD_CONTACTS ="upload_contacts" ;
+    public static final String KEY_CONTACYS ="contacts" ;
 
     public static String getCachedToken(Context context){
         return context.getSharedPreferences(APP_ID,Context.MODE_PRIVATE).getString(KEY_TOKEN,null);
