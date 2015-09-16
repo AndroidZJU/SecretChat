@@ -10,10 +10,11 @@ import com.fengnanyue.secretchat.Configure;
 import com.fengnanyue.secretchat.R;
 import com.fengnanyue.secretchat.tools.MD5Tool;
 
+import net.Message;
 import net.Timeline;
 import net.UploadContacts;
 
-import org.json.JSONArray;
+import java.util.List;
 
 import ld.MyContacts;
 
@@ -25,6 +26,9 @@ public class AtyTimeline extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_timeline);
+
+        adapter = new AtyTimelineMessageListAdapter(this);
+        setListAdapter(adapter);
 
         phone_num = getIntent().getStringExtra(Configure.KEY_PHONE_NUM);
         token = getIntent().getStringExtra(Configure.KEY_TOKEN);
@@ -57,10 +61,10 @@ public class AtyTimeline extends ListActivity {
 
         new Timeline(phone_md5, token, 1, 20, new Timeline.SuccessCallBack() {
             @Override
-            public void onSuccess(int page, int perpage, JSONArray timeline) {
+            public void onSuccess(int page, int perpage, List<Message> timeline) {
                 pd.dismiss();
 
-
+                adapter.addAll(timeline);
             }
         }, new Timeline.FailCallBack() {
             @Override
@@ -71,5 +75,5 @@ public class AtyTimeline extends ListActivity {
         });
     }
     private String phone_num,token,phone_md5;
-
+    private AtyTimelineMessageListAdapter adapter=null;
 }
