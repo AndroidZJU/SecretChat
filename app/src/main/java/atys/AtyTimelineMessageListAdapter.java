@@ -43,7 +43,7 @@ public class AtyTimelineMessageListAdapter extends BaseAdapter {
 
         if(convertView==null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.aty_timeline_list_cell,null);
-            convertView.setTag(new ListCell((TextView) convertView.findViewById(R.layout.aty_timeline_list_cell)));
+            convertView.setTag(new ListCell((TextView) convertView.findViewById(R.id.tvCellLabel)));
         }
 
         ListCell lc = (ListCell)convertView.getTag();
@@ -60,7 +60,7 @@ public class AtyTimelineMessageListAdapter extends BaseAdapter {
         return context;
     }
     public void addAll(List<Message> data){
-        data.addAll(data);
+        this.data.addAll(data);
         notifyDataSetChanged();
     }
 
