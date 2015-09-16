@@ -8,10 +8,10 @@ import com.fengnanyue.secretchat.R;
 /**
  * Created by Fernando on 15/9/14.
  */
-public class AtyPubMessage extends Activity {
+public class AtyPublish extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.aty_pub_message);
+        setContentView(R.layout.aty_publish);
     }
 }

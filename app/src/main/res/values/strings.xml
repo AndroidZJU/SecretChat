@@ -20,4 +20,5 @@
     <string name="fail_to_get_comment">Fail to get comments, please try later</string>
     <string name="comment_content_can_not_be_empty">Comment content can\'t be empty</string>
     <string name="fail_to_pub_comment">Fail to publish comment, please try later</string>
+    <string name="publish">publish</string>
 </resources>
