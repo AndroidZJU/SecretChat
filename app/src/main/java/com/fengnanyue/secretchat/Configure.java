@@ -23,7 +23,7 @@ public class Configure {
     public static final int RESULT_STATUS_INVALID_TOKEN =2;
 
 
-
+    public static final int ACTIVITY_ERSULT_NEED_REFRESH = 10000;
     public static final String APP_ID = "com.fengnanyue.secret";
     public static final String CHARSET ="utf-8" ;
     public static final String ACTION_LOGON ="login";

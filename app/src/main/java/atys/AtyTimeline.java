@@ -69,6 +69,7 @@ public class AtyTimeline extends ListActivity {
             public void onSuccess(int page, int perpage, List<Message> timeline) {
                 pd.dismiss();
 
+                adapter.clear();
                 adapter.addAll(timeline);
             }
         }, new Timeline.FailCallBack() {
@@ -97,12 +98,28 @@ public class AtyTimeline extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menuShowAtyPublish:
-                startActivity(new Intent(AtyTimeline.this,AtyPublish.class));
+                Intent i = new Intent(AtyTimeline.this,AtyPublish.class);
+                i.putExtra(Configure.KEY_PHONE_MD5,phone_md5);
+                i.putExtra(Configure.KEY_TOKEN,token);
+                startActivityForResult(i, 0);
                 break;
             default:
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case Configure.ACTIVITY_ERSULT_NEED_REFRESH:
+                loadMessage();
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     @Override

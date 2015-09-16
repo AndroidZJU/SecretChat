@@ -21,4 +21,7 @@
     <string name="comment_content_can_not_be_empty">Comment content can\'t be empty</string>
     <string name="fail_to_pub_comment">Fail to publish comment, please try later</string>
     <string name="publish">publish</string>
+    <string name="message_content_can_not_be_empty">Message content can\'t be empty</string>
+    <string name="fail_to_publish">Fail to publish message, please try later</string>
+    <string name="suc_to_publish">Success to publish message</string>
 </resources>
