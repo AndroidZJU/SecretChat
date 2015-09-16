@@ -15,6 +15,7 @@ public class Configure {
     public static final String KEY_PHONE_NUM = "phone";
     public static final String KEY_PHONE_MD5 = "phone_md5";
 
+
     public static final String KEY_STATUS = "status";
 
     public static final int RESULT_STATUS_SUCCESS =1;
