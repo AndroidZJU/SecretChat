@@ -10,29 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Fernando on 15/9/15.
+ * Created by Fernando on 15/9/16.
  */
-public class Timeline {
-    public Timeline(String phone_md5,String token, final int page, int perpage,final SuccessCallBack successCallBack,final FailCallBack failCallBack){
+public class GetComment {
+    public GetComment(final String phone_md5,String token,String msgId,int page, int perpage,final SuccessCallBack successCallBack,final Timeline.FailCallBack failCallBack){
 
         new NetConnection(Configure.SERVER_URL, HttpMethod.POST, new NetConnection.SuccessCallBack() {
             @Override
             public void onSuccess(String result) {
                 try {
-                    JSONObject obj = new JSONObject(result);
+                    JSONObject jsonObject = new JSONObject(result);
 
-                    switch (obj.getInt(Configure.KEY_STATUS)){
+                    switch(jsonObject.getInt(Configure.KEY_STATUS)){
                         case Configure.RESULT_STATUS_SUCCESS:
+
                             if(successCallBack!=null){
-                                List<Message> msgs = new ArrayList<Message>();
-                                JSONArray msgJsonArray = obj.getJSONArray(Configure.KEY_TIMELINE);
-                                JSONObject msgObj;
-                                for(int i = 0;i<msgJsonArray.length();i++){
-                                    msgObj=msgJsonArray.getJSONObject(i);
-                                    msgs.add(new Message(msgObj.getString(Configure.KEY_MSG_ID),msgObj.getString(Configure.KEY_MSG),
-                                            msgObj.getString(Configure.KEY_PHONE_MD5)));
+
+                                List<Comment> comments = new ArrayList<Comment>();
+                                JSONArray commentsJsonArray = jsonObject.getJSONArray(Configure.KEY_COMMENTS);
+                                JSONObject commentObj;
+                                for(int i=0;i<commentsJsonArray.length();i++){
+                                    commentObj = commentsJsonArray.getJSONObject(i);
+                                    comments.add(new Comment(commentObj.getString(Configure.KEY_CONTENT),commentObj.getString(Configure.KEY_PHONE_MD5)));
                                 }
-                                successCallBack.onSuccess(obj.getInt(Configure.KEY_PAGE),obj.getInt(Configure.KEY_PERPAGE),msgs );
+                                successCallBack.onSuccess(jsonObject.getString(Configure.KEY_MSG_ID),jsonObject.getInt(Configure.KEY_PAGE),jsonObject.getInt(Configure.KEY_PERPAGE),comments);
                             }
                             break;
                         case Configure.RESULT_STATUS_INVALID_TOKEN:
@@ -46,12 +47,6 @@ public class Timeline {
                             }
                             break;
                     }
-
-
-
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     if(failCallBack!=null){
@@ -66,14 +61,16 @@ public class Timeline {
                     failCallBack.onFail(Configure.RESULT_STATUS_FAIL);
                 }
             }
-        },Configure.KEY_ACTION,Configure.ACTION_TIMELINE,
-                Configure.KEY_PHONE_MD5,phone_md5,Configure.KEY_TOKEN,token,
-                Configure.KEY_PAGE,page+"",Configure.KEY_PERPAGE,perpage+"");
-    }
-    public static interface SuccessCallBack{
-        void onSuccess(int page, int perpage,List<Message> timeline);
+        },Configure.KEY_ACTION,Configure.ACTION_GET_COMMENT,
+                Configure.KEY_TOKEN,token,
+                Configure.KEY_MSG_ID,msgId,
+                Configure.KEY_PAGE,page+"",
+                Configure.KEY_PERPAGE,perpage+"");
     }
 
+    public static interface SuccessCallBack{
+        void onSuccess(String msgId,int page, int perpage,List<Comment> comments);
+    }
     public static interface FailCallBack{
         void onFail(int errorCode);
     }

@@ -70,9 +70,16 @@ public class AtyTimeline extends ListActivity {
             }
         }, new Timeline.FailCallBack() {
             @Override
-            public void onFail() {
+            public void onFail(int errorCode) {
                 pd.dismiss();
-                Toast.makeText(AtyTimeline.this,getString(R.string.fail_to_load_timeline_data),Toast.LENGTH_LONG).show();
+                if(errorCode==Configure.RESULT_STATUS_INVALID_TOKEN){
+                    startActivity(new Intent(AtyTimeline.this,AtyLogin.class));
+                    finish();
+                }else{
+                    Toast.makeText(AtyTimeline.this,getString(R.string.fail_to_load_timeline_data),Toast.LENGTH_LONG).show();
+
+                }
+
             }
         });
     }
