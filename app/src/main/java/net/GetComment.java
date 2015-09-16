@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Fernando on 15/9/16.
  */
 public class GetComment {
-    public GetComment(final String phone_md5,String token,String msgId,int page, int perpage,final SuccessCallBack successCallBack,final Timeline.FailCallBack failCallBack){
+    public GetComment(String phone_md5,String token,String msgId,int page, int perpage,final SuccessCallBack successCallBack,final Timeline.FailCallBack failCallBack){
 
         new NetConnection(Configure.SERVER_URL, HttpMethod.POST, new NetConnection.SuccessCallBack() {
             @Override
@@ -67,6 +67,8 @@ public class GetComment {
                 Configure.KEY_PAGE,page+"",
                 Configure.KEY_PERPAGE,perpage+"");
     }
+
+
 
     public static interface SuccessCallBack{
         void onSuccess(String msgId,int page, int perpage,List<Comment> comments);

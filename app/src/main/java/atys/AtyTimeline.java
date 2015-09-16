@@ -29,6 +29,7 @@ public class AtyTimeline extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_timeline);
 
+
         adapter = new AtyTimelineMessageListAdapter(this);
         setListAdapter(adapter);
 
@@ -94,6 +95,7 @@ public class AtyTimeline extends ListActivity {
         i.putExtra(Configure.KEY_MSG,msg.getMsg());
         i.putExtra(Configure.KEY_MSG_ID,msg.getMsgId());
         i.putExtra(Configure.KEY_PHONE_MD5,msg.getPhone_md5());
+        i.putExtra(Configure.KEY_TOKEN,token);
         startActivity(i);
     }
 
