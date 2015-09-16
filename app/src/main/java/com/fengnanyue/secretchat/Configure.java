@@ -40,6 +40,7 @@ public class Configure {
     public static final String KEY_COMMENTS ="comments" ;
     public static final String KEY_CONTENT ="content" ;
     public static final String ACTION_PUB_COMMENT ="pub_comment" ;
+    public static final String ACTION_PUBLISH ="publish" ;
 
 
     public static String getCachedToken(Context context){
