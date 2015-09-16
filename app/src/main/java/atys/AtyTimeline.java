@@ -4,6 +4,8 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.fengnanyue.secretchat.Configure;
@@ -74,6 +76,20 @@ public class AtyTimeline extends ListActivity {
             }
         });
     }
+
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Message msg = adapter.getItem(position);
+        Intent i = new Intent(this,AtyMessage.class);
+        i.putExtra(Configure.KEY_MSG,msg.getMsg());
+        i.putExtra(Configure.KEY_MSG_ID,msg.getMsgId());
+        i.putExtra(Configure.KEY_PHONE_MD5,msg.getPhone_md5());
+        startActivity(i);
+    }
+
     private String phone_num,token,phone_md5;
     private AtyTimelineMessageListAdapter adapter=null;
 }
