@@ -9,5 +9,5 @@ Change the "localhost" with your own IP address.
 ##Usage
 Download the apk file into your android system to use it.
 
-Project finished
+Project finished.
 
